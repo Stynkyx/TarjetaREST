@@ -16,10 +16,10 @@ public class Comandos implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 
 		//System.out.println(tarjetaDAO.buscarPorId(23));
-		System.out.println(tarjetaDAO.buscarCreditoPorPasionYSalarioYEdad("Shooping", 20000, 28));
+		System.out.println(tarjetaDAO.buscarCreditoPorPasionYSalarioYEdad("shooping", 20000, 28).getCredito());
 		//System.out.println(tarjetaDAO.findCreditoByPasion("Shooping"));
 
-		System.out.println(tarjetaDAO.buscarTodos().toString());
+		//System.out.println(tarjetaDAO.buscarTodos().toString());
 		
 	}
 }

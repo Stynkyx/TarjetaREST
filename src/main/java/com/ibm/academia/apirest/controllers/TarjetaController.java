@@ -73,8 +73,10 @@ public class TarjetaController {
 		
 		Tarjeta tarjeta = tarjetaDao.buscarCreditoPorPasionYSalarioYEdad(pasion, salario, edad);
 		
+		verificarEdadSalarioPasion(edad, salario,pasion);
+		
 		if(tarjeta==null)
-			throw new BadRequestException("El credito con los parametros introducidos no existe");
+			throw new BadRequestException(String.format("El credito con la pasion %s no existe",pasion));
 		
 		return new ResponseEntity<Tarjeta>(tarjeta, HttpStatus.OK);
 	}
@@ -148,5 +150,32 @@ public class TarjetaController {
 		tarjetaDao.eliminarPorId(tarjetaId);
 		respuesta.put("OK", "Tarjeta ID: " + tarjetaId + " eliminado exitosamente");
 		return new ResponseEntity<Map<String, Object>>(respuesta, HttpStatus.ACCEPTED);
+	}
+	
+	public Tarjeta verificarEdadSalarioPasion(Integer edad, Integer salario,String pasion) {
+		
+		Tarjeta tarjeta=null;
+		
+		try {
+			if(edad<18)
+				throw new BadRequestException("Debe de ser mayor a 18 anios");
+			else if(edad>75)
+				throw new BadRequestException("Debe de ser menor a 75 anios");
+		}
+		catch(NotFoundException e){
+			System.out.print(e.toString());
+		}
+		try {
+			if((pasion.compareToIgnoreCase("HELP")==0 | pasion.compareToIgnoreCase("TRAVELS")==0) & salario<12000)
+				throw new BadRequestException(String.format("Para %s el salario debe de ser mayor a 12000",pasion));
+			else if(salario<7000)
+				throw new BadRequestException(String.format("Para %s salario debe de ser mayor a 7000",pasion));	
+		}
+		catch(NotFoundException e){
+			System.out.print(e.toString());
+		}
+		
+		return tarjeta;
+		
 	}
 }

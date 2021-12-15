@@ -22,7 +22,7 @@ public class TarjetaRepositoryTest {
 	@BeforeEach
 	void setUp()	{
 		//Given
-		Iterable<Tarjeta> personas = tarjetaRepositorio.saveAll(
+		Iterable<Tarjeta> tarjetas = tarjetaRepositorio.saveAll(
                 Arrays.asList(
                 		DatosDummy.tarjeta01(),
                 		DatosDummy.tarjeta02(),

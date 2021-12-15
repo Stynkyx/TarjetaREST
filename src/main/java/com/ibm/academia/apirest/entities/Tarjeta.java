@@ -3,22 +3,16 @@ package com.ibm.academia.apirest.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -64,11 +58,6 @@ public class Tarjeta implements Serializable{
 	
 	@Column(name = "credito", nullable = false)
 	private String credito;
-	
-	@ManyToOne(optional = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "FK_CLIENTE_ID"))
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "clientes"})
-	private Cliente cliente;
 	
 	public Tarjeta(String pasion, Integer salario_minimo, Integer salario_maximo, Integer edad_minima,
 			Integer edad_maxima, String credito) {

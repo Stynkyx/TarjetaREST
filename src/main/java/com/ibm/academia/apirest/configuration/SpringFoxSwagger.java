@@ -33,7 +33,7 @@ public class SpringFoxSwagger {
         return new ApiInfo(
                 "Tarjeta Backend API",
                 "API para encontrar una tarjeta de credito",
-                "V1",
+                "V1.1",
                 "Terminos del servicio",
                 new Contact("Salvador Cruz", "www.google.com", "mm@gmail.com"),
                 "Licencia de API", "API licencia url", Collections.emptyList()
